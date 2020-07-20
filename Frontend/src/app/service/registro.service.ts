@@ -11,7 +11,7 @@ export class RegistroService {
   constructor(private http: HttpClient) { }
 
   crear(registro: Registro): Observable<Registro> {
-    return this.http.post<Registro>('http:localhost:8080U/registro', registro);
+    return this.http.post<Registro>('http://localhost:8080/registro', registro);
   }
 
   actualizar(id: number): Observable<Registro> {

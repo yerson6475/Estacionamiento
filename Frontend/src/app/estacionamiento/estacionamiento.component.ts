@@ -15,6 +15,7 @@ export class EstacionamientoComponent implements OnInit {
   constructor(private registroService: RegistroService) { }
 
   ngOnInit(): void {
+    this.listarVehiculos();
   }
 
   crearRegistro() {
