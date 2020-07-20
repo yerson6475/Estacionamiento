@@ -1,1 +1,39 @@
-<p>estacionamiento works!</p>
+<div class="container">
+
+  <div class="d-flex mt-5 ">
+    <input type="text" name="placa" style="margin: 10px;" required placeholder="Placa" [(ngModel)]= 'registro.placa'>
+
+    <label style="margin: 10px;" >Tipo:</label>
+      <select [(ngModel)]='registro.tipo' class="col-2" style="margin: 10px;">
+        <option value="carro">Carro</option>
+        <option value="moto">Moto</option>
+    </select>
+
+    <button type="button" class="btn btn-primary"style="margin: 10px;" (click)="crearRegistro()">Ingresar</button>
+
+</div>
+
+<h3 class="title-table mt-3">
+  Listado de vehiculos estacionados
+</h3>
+<div class="table-responsive">
+  <table class="table table-sm mt-2">
+      <thead>
+        <th scope="col">Placa</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">fecha Ingreso</th>
+        <th scope="col">Editar</th>
+      </thead>
+      <tbody>
+        <tr *ngFor= "let registroA of listarRegistros">
+          <td>{{registroA.placa}}</td>
+          <td>{{registroA.tipo}}</td>
+          <td>{{registroA.fechaIngreso}}</td>
+          <td><button class="btn btn-danger" (click)= 'pagoSalida(registroA.id)' data-toggle="modal">Salir</button></td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
