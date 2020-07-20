@@ -26,7 +26,4 @@ export class RegistroService {
     return this.http.get<Registro[]>('http://localhost:8080/registro/' + placa);
   }
 
-  eliminarRegistro() {
-    return this.http.delete<>('');
-  }
 }
