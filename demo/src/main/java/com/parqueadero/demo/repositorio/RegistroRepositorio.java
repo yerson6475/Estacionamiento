@@ -1,15 +1,15 @@
 package com.parqueadero.demo.repositorio;
 
-import com.parqueadero.demo.modelo.Registro;
+import com.parqueadero.demo.modelo.Registrouno;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface RegistroRepositorio extends JpaRepository<Registro, Long> {
+public interface RegistroRepositorio extends JpaRepository<Registrouno, Long> {
 
-    List<Registro> findByFechaSalidaIsNull();
+    List<Registrouno> findByFechaSalidaIsNull();
 
-    List<Registro> findByPlaca(String placa);
+    List<Registrouno> findByPlaca(String placa);
 }

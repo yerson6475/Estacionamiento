@@ -1,4 +1,4 @@
-package com.parqueadero.demo.modelo;
+package com.parqueadero.demo.comando.registro.dominio.modelo;
 
 import com.sun.istack.NotNull;
 
@@ -92,4 +92,5 @@ public class Registro {
     public void setTotalPago(BigDecimal totalPago) {
         this.totalPago = totalPago;
     }
+
 }

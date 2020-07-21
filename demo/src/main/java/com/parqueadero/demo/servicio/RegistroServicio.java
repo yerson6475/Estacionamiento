@@ -1,6 +1,6 @@
 package com.parqueadero.demo.servicio;
 
-import com.parqueadero.demo.modelo.Registro;
+import com.parqueadero.demo.modelo.Registrouno;
 import com.parqueadero.demo.repositorio.RegistroRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,28 +17,28 @@ public class RegistroServicio {
     @Autowired
     RegistroRepositorio registroRepositorio;
 
-    public Registro crear(Registro registro) {
-        registro.setFechaIngreso(LocalDateTime.now());
-        return registroRepositorio.save(registro);
+    public Registrouno crear(Registrouno registrouno) {
+        registrouno.setFechaIngreso(LocalDateTime.now());
+        return registroRepositorio.save(registrouno);
     }
 
-    public Registro actualizar(Long id) {
-        Optional<Registro> registroOptional = this.registroRepositorio.findById(id);
+    public Registrouno actualizar(Long id) {
+        Optional<Registrouno> registroOptional = this.registroRepositorio.findById(id);
 
-        Registro registro = registroOptional.get();
-        registro.setFechaSalida(LocalDateTime.now());
-        registro.setTotalPago(obtenerTotalPagar(registro));
-        return this.registroRepositorio.save(registro);
+        Registrouno registrouno = registroOptional.get();
+        registrouno.setFechaSalida(LocalDateTime.now());
+        registrouno.setTotalPago(obtenerTotalPagar(registrouno));
+        return this.registroRepositorio.save(registrouno);
 
     }
 
-    private BigDecimal obtenerTotalPagar(Registro registro) {
+    private BigDecimal obtenerTotalPagar(Registrouno registrouno) {
 
         BigDecimal totalPagar = BigDecimal.ZERO;
-        Duration duracion = Duration.between(registro.getFechaIngreso(), registro.getFechaSalida());
+        Duration duracion = Duration.between(registrouno.getFechaIngreso(), registrouno.getFechaSalida());
         Long minutosParqueo = duracion.toMinutes();
 
-        switch (registro.getTipo()) {
+        switch (registrouno.getTipo()) {
 
             case "carro":
                 totalPagar = new BigDecimal(minutosParqueo * 500);
@@ -53,11 +53,11 @@ public class RegistroServicio {
 
     }
 
-    public List<Registro> listarVehiculos() {
+    public List<Registrouno> listarVehiculos() {
         return  this.registroRepositorio.findByFechaSalidaIsNull();
     }
 
-    public List<Registro> listarPorPlaca(String placa) {
+    public List<Registrouno> listarPorPlaca(String placa) {
         return this.registroRepositorio.findByPlaca(placa);
     }
 
